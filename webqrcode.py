@@ -17,7 +17,6 @@ class IndexHandler(tornado.web.RequestHandler):
 	def get(self):
 		self.render('index.html')
 
-
 class QrStreamHandler(tornado.web.RequestHandler):
 	def get(self):
 		qrsize = int(self.get_argument('size', '10'))
@@ -44,17 +43,17 @@ class QrStreamHandler(tornado.web.RequestHandler):
 		self.write(new_img.getvalue())
 
 app = tornado.web.Application(
-    handlers=[
-        (r"/", IndexHandler)
-        ,(r"/qrcode/", QrStreamHandler)
-    ]
-    ,template_path=os.path.join(os.path.dirname(__file__), 'tmpl')
+	handlers=[
+		(r"/", IndexHandler)
+		(r"/qrcode/", QrStreamHandler),
+	],
+	template_path=os.path.join(os.path.dirname(__file__), 'tmpl')
 )
 
 if __name__ == "__main__":
-    tornado.options.parse_command_line()
-    http_server = tornado.httpserver.HTTPServer(app)
-    http_server.listen(options.port)
-    loop=tornado.ioloop.IOLoop.instance()
-    tornado.autoreload.start(loop)
-    loop.start()
+	tornado.options.parse_command_line()
+	http_server = tornado.httpserver.HTTPServer(app)
+	http_server.listen(options.port)
+	loop=tornado.ioloop.IOLoop.instance()
+	tornado.autoreload.start(loop)
+	loop.start()
