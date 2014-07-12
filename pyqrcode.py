@@ -15,7 +15,6 @@ define('port', default=8000, help='run on the listen port', type=int)
 
 class IndexHandler(tornado.web.RequestHandler):
 	def get(self):
-		self.set_header("Server", "WuShuYiQrcode")
 		self.render('index.html')
 
 
@@ -26,7 +25,6 @@ class QrStreamHandler(tornado.web.RequestHandler):
 		dl = self.get_argument('dl', 'off')
 		url = self.get_argument('url', '')
 		self.set_header("Content-Type", "image/png")
-		self.set_header("Server", "WuShuYiQrcode")
 		if dl == 'on':
 			self.set_header("Content-Disposition", "attachment")
 		if qrsize > 100:
