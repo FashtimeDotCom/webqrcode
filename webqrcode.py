@@ -44,7 +44,7 @@ class QrStreamHandler(tornado.web.RequestHandler):
 
 app = tornado.web.Application(
 	handlers=[
-		(r"/", IndexHandler)
+		(r"/", IndexHandler),
 		(r"/qrcode/", QrStreamHandler),
 	],
 	template_path=os.path.join(os.path.dirname(__file__), 'tmpl')
